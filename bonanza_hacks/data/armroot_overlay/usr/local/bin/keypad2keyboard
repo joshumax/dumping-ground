@@ -1,0 +1,71 @@
+#!/bin/bash
+
+# Yes, it's a hack; but evdev is buggy and we need this...
+
+device='/dev/input/event1'
+
+key_0d='*type 1 (EV_KEY), code 512 (KEY_NUMERIC_0), value 1*'
+key_1d='*type 1 (EV_KEY), code 513 (KEY_NUMERIC_1), value 1*'
+key_2d='*type 1 (EV_KEY), code 514 (KEY_NUMERIC_2), value 1*'
+key_3d='*type 1 (EV_KEY), code 515 (KEY_NUMERIC_3), value 1*'
+key_4d='*type 1 (EV_KEY), code 516 (KEY_NUMERIC_4), value 1*'
+key_5d='*type 1 (EV_KEY), code 517 (KEY_NUMERIC_5), value 1*'
+key_6d='*type 1 (EV_KEY), code 518 (KEY_NUMERIC_6), value 1*'
+key_7d='*type 1 (EV_KEY), code 519 (KEY_NUMERIC_7), value 1*'
+key_8d='*type 1 (EV_KEY), code 520 (KEY_NUMERIC_8), value 1*'
+key_9d='*type 1 (EV_KEY), code 521 (KEY_NUMERIC_9), value 1*'
+key_sd='*type 1 (EV_KEY), code 522 (KEY_NUMERIC_STAR), value 1*'
+key_pd='*type 1 (EV_KEY), code 523 (KEY_NUMERIC_POUND), value 1*'
+
+key_0u='*type 1 (EV_KEY), code 512 (KEY_NUMERIC_0), value 0*'
+key_1u='*type 1 (EV_KEY), code 513 (KEY_NUMERIC_1), value 0*'
+key_2u='*type 1 (EV_KEY), code 514 (KEY_NUMERIC_2), value 0*'
+key_3u='*type 1 (EV_KEY), code 515 (KEY_NUMERIC_3), value 0*'
+key_4u='*type 1 (EV_KEY), code 516 (KEY_NUMERIC_4), value 0*'
+key_5u='*type 1 (EV_KEY), code 517 (KEY_NUMERIC_5), value 0*'
+key_6u='*type 1 (EV_KEY), code 518 (KEY_NUMERIC_6), value 0*'
+key_7u='*type 1 (EV_KEY), code 519 (KEY_NUMERIC_7), value 0*'
+key_8u='*type 1 (EV_KEY), code 520 (KEY_NUMERIC_8), value 0*'
+key_9u='*type 1 (EV_KEY), code 521 (KEY_NUMERIC_9), value 0*'
+key_su='*type 1 (EV_KEY), code 522 (KEY_NUMERIC_STAR), value 0*'
+key_pu='*type 1 (EV_KEY), code 523 (KEY_NUMERIC_POUND), value 0*'
+
+evtest "$device" | while read line; do
+    case $line in
+        ($key_0d) xdotool keydown 0 ;;
+        ($key_0u) xdotool keyup 0 ;;
+
+        ($key_1d) xdotool keydown 1 ;;
+        ($key_1u) xdotool keyup 1 ;;
+
+        ($key_2d) xdotool keydown 2 ;;
+        ($key_2u) xdotool keyup 2 ;;
+
+        ($key_3d) xdotool keydown 3 ;;
+        ($key_3u) xdotool keyup 3 ;;
+
+        ($key_4d) xdotool keydown 4 ;;
+        ($key_4u) xdotool keyup 4 ;;
+
+        ($key_5d) xdotool keydown 5 ;;
+        ($key_5u) xdotool keyup 5 ;;
+
+        ($key_6d) xdotool keydown 6 ;;
+        ($key_6u) xdotool keyup 6 ;;
+
+        ($key_7d) xdotool keydown 7 ;;
+        ($key_7u) xdotool keyup 7 ;;
+
+        ($key_8d) xdotool keydown 8 ;;
+        ($key_8u) xdotool keyup 8 ;;
+
+        ($key_9d) xdotool keydown 9 ;;
+        ($key_9u) xdotool keyup 9 ;;
+
+        ($key_sd) xdotool keydown shift+8;;
+        ($key_su) xdotool keyup shift+8 ;;
+
+        ($key_pd) xdotool keydown shift+3 ;;
+        ($key_pu) xdotool keyup shift+3 ;;
+    esac
+done
